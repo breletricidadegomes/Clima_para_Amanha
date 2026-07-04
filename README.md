@@ -1,3 +1,6 @@
+![Power Automate](https://img.shields.io/badge/Power%20Automate-0066FF?style=flat&logo=powerautomate&logoColor=white)
+![Excel Online](https://img.shields.io/badge/Excel%20Online-217346?style=flat&logo=microsoftexcel&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat&logo=typescript&logoColor=white)
 # ☀️🌧️ Clima de Amanhã — Power Automate Flow
 
 Fluxo do **Microsoft Power Automate** que roda diariamente, busca a previsão do

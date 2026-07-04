@@ -42,17 +42,22 @@ destinatários.
 ```
 .
 ├── manifest.json                                  # Manifesto do pacote (recursos/dependências)
-└── Microsoft.Flow/
-    └── flows/
-        ├── manifest.json                          # Manifesto interno do flow
-        └── c7e8e38a-.../
-            ├── definition.json                    # Lógica completa do flow (triggers/actions)
-            ├── apisMap.json                        # Mapeamento de APIs usadas
-            └── connectionsMap.json                 # Mapeamento de conexões usadas
+├── Microsoft.Flow/
+│   └── flows/
+│       ├── manifest.json                          # Manifesto interno do flow
+│       └── c7e8e38a-.../
+│           ├── definition.json                    # Lógica completa do flow (triggers/actions)
+│           ├── apisMap.json                        # Mapeamento de APIs usadas
+│           └── connectionsMap.json                 # Mapeamento de conexões usadas
+└── scripts/
+    └── TraduzirTexto.ts                            # Office Script usado na etapa de tradução
 ```
 
-Esta é a estrutura padrão gerada quando você exporta um flow do Power
-Automate como **pacote (.zip)**.
+A pasta `Microsoft.Flow/` e o `manifest.json` da raiz são a estrutura padrão
+gerada quando você exporta um flow do Power Automate como **pacote (.zip)**.
+A pasta `scripts/` não faz parte do pacote — é o código-fonte do Office
+Script referenciado pela etapa `Executar_script_Traduzir_Texto`, incluído
+aqui para versionamento.
 
 ## ⚙️ Configuração
 
@@ -74,8 +79,16 @@ Você também vai precisar:
 - Ter uma planilha Excel Online com uma tabela cujas colunas batam com os
   campos usados em `AddRowV2` (Cidade, Vento, Possibilidade de Chuva, Data,
   Condições, Temperaturas, Umidade, UV, etc.).
-- Recriar (ou apontar para) o Office Script referenciado na etapa
-  `Executar_script_Traduzir_Texto`.
+- O Office Script **fica salvo dentro do próprio arquivo Excel** (na guia
+  **Automatizar**), não é um arquivo separado. Abra a planilha que você vai
+  usar, vá em **Automatizar > Novo Script**, cole o conteúdo de
+  [`scripts/TraduzirTexto.ts`](scripts/TraduzirTexto.ts) e salve com o mesmo
+  nome. O script fica então disponível para a etapa
+  `Executar_script_Traduzir_Texto`, que passa a referenciá-lo automaticamente
+  (o `scriptId` em `SEU_SCRIPT_ID_AQUI` é gerado pelo próprio Excel/flow ao
+  selecionar o script na ação — você não precisa preencher isso manualmente).
+  O arquivo em `scripts/` neste repositório existe só para versionar/consultar
+  o código-fonte fora do Excel.
 - Reconectar os 3 conectores (MSN Clima, Excel Online Business, Teams) com
   suas próprias credenciais ao importar o flow.
 

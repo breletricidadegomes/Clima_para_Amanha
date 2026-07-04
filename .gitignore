@@ -1,0 +1,10 @@
+# Pacotes exportados/gerados
+*.zip
+
+# Arquivos de sistema
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
